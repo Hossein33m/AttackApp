@@ -1,0 +1,107 @@
+#:kivy 2.2.1
+mybox:
+<mybox>:
+    canvas.before:
+        Rectangle:
+            size: self.size
+            source: "pic\green.jpg"
+
+    orientation: "horizontal"
+
+    Label:
+        size_hint:0.1,1
+
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            size_hint: 1,0.4
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                on_release: root.minus()
+                size_hint: 1,1
+                background_normal: "pic/1.1.png"
+                background_down: "pic/1.2.png"
+            Label:
+                size_hint: 0.7,1
+            FloatLayout:
+                size_hint: 3,1
+                Image:
+                    source:"pic/level.png"
+                    allow_stretch: True
+                    keep_ratio: False
+                    pos_hint:{"center_x":0.5, "center_y":0.5}
+                Label:
+                    id: level_id
+                    text: "15"
+                    pos_hint:{"center_x":0.5, "center_y":0.3}
+                    font_name: "cre.ttf"
+                    font_size: self.height/2
+                    color: 0,0,0,1
+            Label:
+                size_hint: 0.7,1
+            Button:
+                size_hint: 1,1
+                background_normal: "pic/2.1.png"
+                background_down: "pic/2.2.png"
+                on_release: root.plus()
+
+
+        Label:
+            size_hint: 1,0.4
+
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                size_hint: 1,1
+                background_normal: "pic/3.1.png"
+                background_down: "pic/3.2.png"
+                on_release: root.reset()
+            Label:
+                size_hint: 0.7,1
+            FloatLayout:
+                size_hint: 3,1
+                Image:
+                    source:"pic/target.png"
+                    allow_stretch: True
+                    keep_ratio: False
+                    pos_hint:{"center_x":0.5, "center_y":0.5}
+                TextInput:
+                    id: target_id
+                    text:""
+                    pos_hint:{"center_x":0.5, "center_y":0.2}
+                    size_hint: 0.8,0.3
+                    multiline: False
+                    halign: "center"
+                    padding: 1,(self.height/2)-(self.line_height/2)
+                    font_name: "cre.ttf"
+                    font_size: self.width/12
+                    on_text_validate: root.tar()
+            Label:
+                size_hint: 0.7,1
+            Button:
+                size_hint: 1,1
+                background_normal: "pic/4.1.png"
+                background_down: "pic/4.2.png"
+                on_release: root.attack()
+
+            
+        Label:
+            id: text_id
+            text: "cyber attack progress"
+            size_hint: 1,1
+            font_name: "cre.ttf"
+            font_size: self.height/3
+            color: 1,1,1,0.4
+
+
+        ProgressBar:
+            id: bar_id
+            size_hint: 1,0.5
+            value: 0
+
+
+    Label:
+        size_hint:0.1,1
